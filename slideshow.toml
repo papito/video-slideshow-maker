@@ -1,0 +1,45 @@
+# Slideshow settings. Every value here is the built-in default; delete what you do not change.
+# Command-line flags override this file. `render --draft` applies the [draft] profile on top.
+
+[canvas]
+width = 1920
+height = 1080
+fps = 30
+
+[photo]
+duration = 8.0          # seconds each photo stays on screen
+ken_burns_zoom = 1.08   # how far the slow pan/zoom travels (1.0 disables it visually)
+engine = "auto"         # auto | perspective (sub-pixel smooth) | zoompan (whole-pixel steps, jitters)
+
+[backdrop]
+blur = 10               # boxblur radius applied at quarter resolution
+brightness = -0.12      # darken the blurred backdrop so the photo stands out
+saturation = 0.85
+
+[crossfade]
+duration = 0.5          # seconds; clamped to half the shorter neighbour
+
+[encode]
+encoder = "auto"        # auto | nvenc | x264
+nvenc_preset = "p5"     # p1 (fastest) .. p7 (best)
+nvenc_cq = 19           # constant quality, lower is better
+segment_nvenc_preset = "p4"
+segment_nvenc_cq = 16
+x264_preset = "slow"
+x264_crf = 18
+segment_x264_preset = "veryfast"
+segment_x264_crf = 14
+audio_bitrate = "192k"
+
+[render]
+# jobs = 4              # parallel segment renders; default 4 with NVENC, CPU count with x264
+cache_dir = ".slideshow-cache"   # relative to the playlist's folder
+batch_threshold = 60    # playlists longer than this are joined in batches
+
+[draft]                 # applied on top of everything above by `render --draft`; any [photo]/[canvas]/[encode] key may appear here
+width = 854
+height = 480
+nvenc_preset = "p1"
+nvenc_cq = 28
+x264_preset = "ultrafast"
+x264_crf = 26

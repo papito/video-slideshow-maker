@@ -1,0 +1,28 @@
+[project]
+name = "slideshow"
+version = "0.1.0"
+description = "Stitch a folder of phone photos and clips into one video, ordered by capture time."
+readme = "README.md"
+authors = [
+    { name = "Andrei Taranchenko", email = "904787+papito@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=11.0",
+    "typer>=0.15",
+]
+
+[project.scripts]
+slideshow = "slideshow.cli:app"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.18,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
